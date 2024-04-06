@@ -1,0 +1,68 @@
+:root {
+    --ff-body: "Oswald", sans-serif;
+
+    --fs-large: 2.5rem;
+    --fs-medium: 1.325rem;
+    --fs-small: 1rem;
+
+    --fw-bold: 700;
+    --fw-light: 400;
+
+    --clr-primary: #2C7865;
+    --clr-primary-light: #90D26D;
+    --clr-secondary: #FF9800;
+    --clr-black: #333;
+    --clr-white: #fefefe;
+
+    --border-radius: 0.25em;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: vr(--ff-body);
+    font-size: var(--fs-medium);
+}
+
+h1{
+    font-size: var(--fs-large);
+    font-weight: var(--fw-bold);
+}
+
+h2 {
+    font-size: var(--fs-medium);
+    
+}
+
+.todo-list {
+    padding: 5em 0;
+    background: var(--clr-primary);
+}
+
+.main-container {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+input[type="text"],
+button {
+    border: none;
+    outline: none;
+    font-size: vr(--fs-large);
+    font-weight: var(--fw-bold);
+    color: var(--clr-black);
+    padding: 0.625em 0.85em;
+    border-radius: var(--border-radius);
+}
+
+button {
+    color: var(--clr-white);
+    background: var(--clr-primary-light);
+    padding: 0.625em 1em;
+    cursor: pointer;
+}
