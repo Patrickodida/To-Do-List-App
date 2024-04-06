@@ -1,90 +1,91 @@
-// target the Elements
 const inputElement = document.querySelector("#input-item");
 const addButton = document.querySelector(".create");
 const taskContainer = document.querySelector("#tasks");
 
-// create a delete icon 
-let deleteIcon = document.createElement("i");
-
-// create an edit icon
-let editIcon = document.createElement("i");
-
-// create new list element
-let listItem = document.createElement("li");
-//console.log(listItem);
-
 let listElements = [];
 
-// create a function that creates new list elements
-function createListElements(){
-    if(inputElement.value !== "") {
-        // 
-    listElements.push(listItem);
-    listElements.forEach((listElement) => {
-        // Add a list item to the list Element
-        listItem.innerText = inputElement.value;
-    
-        // Add a class to the delete Icon element
-        // Append the delete Icon to list element
-        deleteIcon.classList.add("bx", "bx-trash");
-    
-        listItem.appendChild(deleteIcon);
-    
-        // Add a class to the edit icon element
-        // Append the editIcon to the list element
-        editIcon.classList.add("bx", "bx-edit");
-    
-        listItem.appendChild(editIcon);
-            // Append the list Element to the task container
-        taskContainer.appendChild(listElement);
-        console.log(listElement)
-    })
-    //console.log(listElements);
-        // empty the input field after the list item is displayed
-        inputElement.value = "";
-        
-        }
-}
-addButton.addEventListener("click", () => {
-    createListElements();
-})
+// Function to create a new list item
+function createListItem(listItemObject) {
+  const listItem = document.createElement("li");
+  const deleteIcon = document.createElement("i");
+  const editIcon = document.createElement("i");
 
+  // Add classes to icons
+  deleteIcon.classList.add("bx", "bx-trash");
+  editIcon.classList.add("bx", "bx-edit");
 
-// delete function
-function deleteItem(){
-    // Implement the delete and the edit functionality
-    listItem.remove();
-}
-// Add an event Listener to the delete icon
-deleteIcon.addEventListener("click", () => {
-    deleteIcon();
-    })
+  // Set text content for list item
+  listItem.innerText = listItemObject.text;
 
+  // Append delete and edit icons to list item
+  listItem.appendChild(editIcon);
+  listItem.appendChild(deleteIcon);
 
-// edit function
-const editItem = () => {
-     // create a prompt to edit the list item
-     let newText = listItem.textContent.trim();
-     inputElement.value = newText;
+  // Append the list item to the container
+  taskContainer.appendChild(listItem);
 
-     let edit = addButton.classList.add("edit");
-     addButton.classList.remove("create");
-     // use the if statement
-     if(edit) {
-         // use an if statement to check for null and empty string conditions
-     if(newText !== null && newText.trim() !== ""){
-         listItem.textContent = newText.trim();
-     }
-     }
+  // Add event listener to delete icon
+  deleteIcon.addEventListener("click", () => {
+    deleteItem(listItemObject.id);
+  });
+
+  // Add event listener to edit icon
+  editIcon.addEventListener("click", () => {
+    editItem(listItemObject.id);
+  });
 }
 
-// Add an event Listener to the editicon
-editIcon.addEventListener("click", () => {
-       editItem();                   
-})
+// Function to render all list items
+function renderListItems() {
+  taskContainer.innerHTML = ""; // Clear the container first (optional)
+  listElements.forEach((listItemObject) => {
+    createListItem(listItemObject);
+  });
+}
 
-//editItem();
-//createListElements();
-//deleteItem();
+// Function to add new item
+function addItem() {
+  if (inputElement.value.trim() === "") return;
 
+  const newListItem = {
+    id: Date.now(),
+    text: inputElement.value,
+  };
 
+  // Push the new item to the array
+  listElements.push(newListItem);
+
+  // Render all list items
+  renderListItems();
+
+  // Empty the input field
+  inputElement.value = "";
+}
+
+// Function to delete item
+function deleteItem(itemId) {
+  // Filter out the item with the specified id
+  listElements = listElements.filter((item) => item.id !== itemId);
+
+  // Render all list items
+  renderListItems();
+}
+
+// Function to edit item
+function editItem(itemId) {
+  const itemToEdit = listElements.find((item) => item.id === itemId);
+  if (!itemToEdit) return;
+
+  const newText = inputElement.value;
+  if (newText !== null && newText.trim() !== "") {
+    itemToEdit.text = newText.trim();
+    // Render all list items
+    renderListItems();
+  }
+}
+
+// Event listener for add button
+addButton.addEventListener("click", addItem);
+
+// Initial rendering of list items
+renderListItems();
