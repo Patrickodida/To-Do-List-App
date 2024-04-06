@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List App</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-<!-- Box Icons -->
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Box Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- To-do list app -->
     <div class="todo-list">
-        <div class="main-container">
-            <h1>To-Do List App</h1>
-            <input id="input-item" type="text" name="to-do" placeholder="Enter Item">
-            <button class="create">Add</button>
-        
-    <!-- Task Container  -->
-    <div class="task-container">
-        <h2>My Tasks</h2>
-        <ul id="tasks">
+      <div class="main-container">
+        <h1>To-Do List App</h1>
+        <input
+          id="input-item"
+          type="text"
+          name="to-do"
+          placeholder="Enter Item"
+        />
+        <button class="create">Add</button>
 
-        </ul>
-    </div>
-    </div>
+        <!-- Task Container  -->
+        <div class="task-container">
+          <h2>My Tasks</h2>
+          <ul id="tasks"></ul>
+        </div>
+      </div>
     </div>
 
     <script src="./main.js"></script>
-</body>
+  </body>
 </html>
